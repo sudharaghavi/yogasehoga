@@ -32,7 +32,7 @@ export default function YogaRoutineBuilder() {
     document.title = "YogaBuddy - Personalized Yoga Routines"
   }, [])
 
-  const updatePreference = (key: string, value: any) => {
+  const updatePreference = (key: string, value: string | number | string[]) => {
     setPreferences((prev) => ({ ...prev, [key]: value }))
     calculateProgress()
   }
@@ -63,7 +63,7 @@ export default function YogaRoutineBuilder() {
         <p className="text-lg mb-4">Personalized for your needs, mood, and goals.</p>
         <Progress value={progress} className="w-full max-w-md mx-auto" />
         <p className="text-lg italic text-gray-600 mt-4">
-          "Yoga is not about touching your toes, it's about what you learn on the way down."
+          &quot;Yoga is not about touching your toes, it&apos;s about what you learn on the way down.&quot;
         </p>
       </header>
 

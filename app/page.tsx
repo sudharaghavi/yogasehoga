@@ -10,7 +10,6 @@ import { Dropdown } from "@/components/dropdown"
 import { LoginForm } from "@/components/login-form"
 import { SignupForm } from "@/components/signup-form"
 import { Slider } from "@radix-ui/react-slider"
-import { supabase } from "@/lib/supabaseClient"
 
 export default function YogaRoutineBuilder() {
   const [preferences, setPreferences] = useState({
@@ -47,18 +46,6 @@ export default function YogaRoutineBuilder() {
       return false
     }).length
     setProgress((filledFields / totalFields) * 100)
-  }
-
-  const handleGenerateRoutine = async () => {
-    const { data, error } = await supabase
-      .from('Yogasehoga')
-      .insert([{ Name: preferences.timeOfDay }])
-
-    if (error) {
-      console.error("Error inserting data:", error)
-    } else {
-      console.log("Data inserted successfully:", data)
-    }
   }
 
   return (
@@ -202,7 +189,7 @@ export default function YogaRoutineBuilder() {
       <footer className="fixed bottom-0 left-0 right-0 bg-[#F8F3E9] p-4 shadow-lg">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <Button variant="outline" onClick={() => console.log(preferences)}>Save Routine</Button>
-          <Button className="bg-[#88A096] hover:bg-[#7A9286] text-white" onClick={handleGenerateRoutine}>
+          <Button className="bg-[#88A096] hover:bg-[#7A9286] text-white" onClick={() => console.log("Generating routine...")}>
             Generate YogaBuddy Routine
           </Button>
           <Button variant="outline" onClick={() => console.log("Tracking progress...")}>Track Progress</Button>
